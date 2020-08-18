@@ -1,0 +1,40 @@
+З*адание 12. Фреймворки
+1. Создайте новый Maven проект из архетипа maven-archetype-quickstart
+http://maven.apache.org/archetypes/maven-archetype-quickstart/
+
+в pom.xml добавьте зависимость от артефакта groupId = org.apache.commons, artifactId = commons-lang3,version = 3.10
+версию можно не указывать, тогда Maven будет использовать последнюю доступную версию, но это считается небезопасным.
+commons-lang3 - это библиотека общего назначения, включает в себя функции для работы со строками, числами,объектами, случайными строками и т.п.
+
+
+- В сгенерированном проекте определите класс ShopItem с полями:
+Категория - строка
+Цена - double
+Наименование - строка
+Количество - int
+ID - строка
+
+ID - это строка из 25 символов (английские буквы или цифры)
+
+- переопределите equals и hashCode, используя org.apache.commons.lang.builder.EqualsBuilder и HashCodeBuilder
+Подсказка: при генерации equals и hashCode в IDEA можно выбрать шаблон, чтобы использовались эти классы
+
+- Создайте класс Shop и добавьте 10 товаров. Для генерации ID используйте класс RandomStringUtils из commons-lang
+
+
+- Создайте класс ItemSorters и определите в нем методы, отвечающие за сравнение двух объектов
+int sortByCategory(ShopItem, ShopItem)
+int sortByTitle(ShopItem, ShopItem)
+int sortByPrice(ShopItem, ShopItem)
+int sortByQuantity(ShopItem, ShopItem)
+
+в классе Shop создайте коллекцию для хранения компараторов :
+List<Comparator<ItemShop>>
+заполните это коллекцию, использую MethodReference (ссылайтесь на методы из класса ItemSorters)
+
+
+- Выведите все товары из списка в формате, отсортированную, используя случайный компаратор
+ID  Категория   Наименование    Цена    Остаток
+Длинные значения (больше 10 символов) полей сократите, используя StringUtils.abbreviate
+
+
